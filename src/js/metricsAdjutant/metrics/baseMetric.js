@@ -14,7 +14,6 @@ export default class BaseMetric {
             isLoadOnStart   : typeof params['load'] !== "undefined" ? params['load'] : true,
         }
         this.eventPool  = []
-        this.obMetrika  = undefined
         this.obCounter  = undefined
 
         this.isDebug    = this.isDebug.bind(this)

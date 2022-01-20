@@ -13,3 +13,5 @@ ma.createMetrics([
         }
     }
 ])
+
+console.log(ma.getMetricById(123))

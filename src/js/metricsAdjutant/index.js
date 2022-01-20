@@ -27,13 +27,19 @@ export default function metricsAdjutant() {
      * @param metricOptions
      */
     function createMetric(metricOptions) {
-        if (typeof metricOptions['type'] !== 'undefined' && typeof metricsTypes[metricOptions['type']] !== "undefined") {
+        if (typeof metricOptions['type'] !== 'undefined' &&
+            typeof metricsTypes[metricOptions['type']] !== "undefined") {
             const metric = new metricsTypes[metricOptions['type']](metricOptions)
 
             metrics.push(metric)
 
             setTimeout(() => {
-                metric.sendTarget('ddd')
+                const params = [
+                    'ddd',
+                    { 'd': 'd' }
+                ]
+                metric.reachGoal(...params)
+                metric.create()
             },1500)
         }
     }
@@ -48,13 +54,27 @@ export default function metricsAdjutant() {
     }
 
     /**
-     * Метод получает метрику по id
+     * Метод получает метрику по id (внутреннему),
+     * если не найдет - осуществит поиск по metricId
      *
-     * @param id
-     * @returns {*[]}
+     * @param id - связка из `${type}-${id}`
+     * @returns {*}
      */
     function getMetricById(id) {
-        return metrics.filter(metric => metric.id === id)
+        const main = metrics.filter(metrics => metrics.id === id)
+        const result = main.length === 0 ? getMetricByMetricId(id) : main[0]
+        return typeof result !== "undefined" ? result : false
+    }
+
+    /**
+     * Метод получает метрику по ее metricId
+     *
+     * @param metricId
+     * @return {*}
+     */
+    function getMetricByMetricId(metricId) {
+        const result = metrics.filter(metric => metric.metricId === metricId)[0]
+        return typeof result !== "undefined" ? result : false
     }
 
     /**
