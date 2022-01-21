@@ -4,7 +4,7 @@ import { mergeDeep, logger } from "../utils/tools"
 /**
  * Класс по Яндекс.Метрики
  */
-export default class YandexMetrika extends BaseMetric {
+export default class YandexMetric extends BaseMetric {
     /**
      * Конструктор
      * @param props
@@ -518,47 +518,5 @@ export default class YandexMetrika extends BaseMetric {
         return false
     }
 
-    /**
-     * Метод добавляет событие в пул
-     *
-     * @param method
-     * @param params
-     */
-    addEventPoolItem(method, ...params) {
-        this.eventPool.push(({
-            method      : 'reachGoal',
-            params      : params,
-            isRealised  : false
-        }))
 
-        if (this.isDebug()) {
-            logger('info', `${this.getType()} v${this.getVersion()} add event ${method} to pool`)
-
-            console.group(`Event "${method}" details`)
-                for (let param of params) {
-                    console.log(param)
-                }
-            console.groupEnd()
-        }
-    }
-
-    /**
-     * Метод проходится по пулу событий, которые не были отправлены и пробует отправить
-     */
-    eventPoolRealise() {
-        if (this.isLoaded() && this.isExists() && this.eventPool.length > 0) {
-            this.eventPool.forEach((item, i, arr) => {
-                const { method, params, isRealised } = item
-
-                if (!isRealised) {
-                    const result = this[method](...params)
-
-                    if (result !== false) {
-                        arr[i].isRealised = true
-                        arr.splice(i, 1)
-                    }
-                }
-            })
-        }
-    }
 }

@@ -47,3 +47,40 @@ export function logger(type, content) {
             console.log(content)
     }
 }
+
+/**
+ * Метод добавляет промис на загрузку скрипта
+ * @param url
+ * @param isAsync
+ * @param place
+ * @return {Promise<unknown>}
+ */
+export function loadScript(url, isAsync = true, place = 'head') {
+    return new Promise(((resolve, reject) => {
+        const head = document.getElementsByTagName('head')[0]
+        const script = document.createElement('script')
+
+        script.type = 'text/javascript'
+        script.src = url
+
+        if (isAsync) {
+            script.async = isAsync
+        }
+
+        script.onload = resolve
+        script.onerror = reject
+
+        switch (place) {
+            case "head":
+                document.head.appendChild(script)
+                break;
+            case "body-start":
+                document.body.insertBefore(script, document.body.firstChild)
+                break;
+            case "body-end":
+                document.body.appendChild(script)
+                break;
+        }
+
+    }))
+}

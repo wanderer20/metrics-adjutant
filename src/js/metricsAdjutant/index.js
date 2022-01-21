@@ -1,4 +1,5 @@
-import YandexMetrika from "./metrics/yandexMetrika";
+import YandexMetric from "./metrics/yandexMetric";
+import GoogleMetric from "./metrics/googleMetric";
 
 // https://tyapk.ru/blog/post/ym-and-gapi-counters
 // TODO: https://www.kobzarev.com/technical-seo/yandex-metrika-lazy-load/
@@ -10,7 +11,10 @@ export default function metricsAdjutant() {
     const metrics = []
     
     const metricsTypes = {
-        'yandex.metrika' : YandexMetrika
+        'yandex.metrika' : YandexMetric,
+        'google.analytics' : GoogleMetric,
+        'google.tag.manager' : GoogleMetric,
+        'google.adwords' : GoogleMetric,
     }
 
     return Object.freeze({
@@ -18,7 +22,8 @@ export default function metricsAdjutant() {
         createMetrics,
         getMetricById,
         getMetrics,
-        removeMetric
+        removeMetric,
+        push,
     })
 
     /**
@@ -31,16 +36,12 @@ export default function metricsAdjutant() {
             typeof metricsTypes[metricOptions['type']] !== "undefined") {
             const metric = new metricsTypes[metricOptions['type']](metricOptions)
 
-            metrics.push(metric)
-
-            setTimeout(() => {
-                const params = [
-                    'ddd',
-                    { 'd': 'd' }
-                ]
-                metric.reachGoal(...params)
-                metric.create()
-            },1500)
+            // console.log(typeof metric)
+            // console.log(metric)
+            // metric.do('send', {'da': 'da'})
+            if (typeof metric !== "undefined") {
+                metrics.push(metric)
+            }
         }
     }
 
@@ -51,6 +52,21 @@ export default function metricsAdjutant() {
      */
     function createMetrics(metricsOptionsArray) {
         metricsOptionsArray.forEach(metricOptions => createMetric(metricOptions))
+    }
+
+    /**
+     * Исполнение методов внутри метрик
+     *
+     * @param id - id метрики
+     * @param method - ее метод
+     * @param params - параметры функции
+     */
+    function push(id, method, params) {
+        const metric = getMetricById(id)
+
+        if (metric !== false) {
+            metric.do(method, params)
+        }
     }
 
     /**

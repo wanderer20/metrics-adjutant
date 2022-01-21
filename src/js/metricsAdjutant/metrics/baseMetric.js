@@ -20,9 +20,9 @@ export default class BaseMetric {
 
         if (this.state.isLoadOnStart) {
             if (this.isDebug()) {
-                logger('info', `${this.getType()} v${this.getVersion()} ID: ${this.getMetricId()} - TRY CREATE`)
+                logger('info', `${this.getType()} v${this.getVersion()} ID: ${this.getMetricId()} - TRY INIT`)
             }
-            this.create()
+            this.init()
         }
 
     }
@@ -30,13 +30,25 @@ export default class BaseMetric {
     attachEvents() {}
     detachEvents() {}
 
-    create() {
+    init() {
         this.load()
         this.attachEvents()
     }
     load() {}
     isLoaded() {}
-    eventPoolRealise() {}
+    do(method, params) {
+        if (typeof this[method] === "function") {
+            if (typeof params === "undefined") {
+                return this[method]()
+            }
+
+            if (typeof params === "object") {
+                return this[method](...Object.values(params))
+            }
+
+            return this[method](params)
+        }
+    }
 
     /**
      * Метод возвращает флаг на дебаг
@@ -65,5 +77,49 @@ export default class BaseMetric {
     }
     getOptions() {
         return this.options
+    }
+
+    /**
+     * Метод добавляет событие в пул
+     *
+     * @param method
+     * @param params
+     */
+    addEventPoolItem(method, ...params) {
+        this.eventPool.push(({
+            method      : method,
+            params      : params,
+            isRealised  : false
+        }))
+
+        if (this.isDebug()) {
+            logger('info', `${this.getType()} v${this.getVersion()} add event ${method} to pool`)
+
+            console.group(`Event "${method}" details`)
+            for (let param of params) {
+                console.log(param)
+            }
+            console.groupEnd()
+        }
+    }
+
+    /**
+     * Метод проходится по пулу событий, которые не были отправлены и пробует отправить
+     */
+    eventPoolRealise() {
+        if (this.isLoaded() && this.eventPool.length > 0) {
+            this.eventPool.forEach((item, i, arr) => {
+                const { method, params, isRealised } = item
+
+                if (!isRealised) {
+                    const result = this.do(method, params)
+
+                    if (result !== false) {
+                        arr[i].isRealised = true
+                        // arr.splice(i, 1)
+                    }
+                }
+            })
+        }
     }
 }
