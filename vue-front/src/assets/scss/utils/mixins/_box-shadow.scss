@@ -1,0 +1,44 @@
+// ----------------------------------------------------------------------
+
+// Box Shadow
+
+// ----------------------------------------------------------------------
+
+// example: @include box-shadow(1px, 2px, 2px, 2px, #000);
+//@include box-shadow(
+//                0 1px 4px rgba(0,0,0,0.3),
+//                0 0 40px rgba(0,0,0,0.1) inset
+//);
+
+//@mixin box-shadow($shadow1, $shadow2:false) {
+//  $params: $shadow1;
+//  @if $shadow2
+//  { $params: $shadow1, $shadow2; }
+//  -webkit-box-shadow: $params;
+//  -moz-box-shadow: $params;
+//  box-shadow: $params;
+//}
+//@mixin box-shadow($horizOffset, $vertOffset, $blur, $color) {
+//  /*
+//      Blur is an optional parameter, but helps soften the shadow.
+//      Call the mixin by applying pixel values for $horizOffset,
+//      $vertOffset, and $blur, and a hex value for $color. The
+//      border-collapse rule is included to render shadows properly
+//      in IE9.
+//  */
+//  -webkit-box-shadow: $horizOffset $vertOffset $blur $color;
+//  -moz-box-shadow: $horizOffset $vertOffset $blur $color;
+//  -ms-box-shadow: $horizOffset $vertOffset $blur $color;
+//  -o-box-shadow: $horizOffset $vertOffset $blur $color;
+//  box-shadow: $horizOffset $vertOffset $blur $color;
+//  border-collapse: separate;
+//}
+
+@mixin box-shadow($shadow1, $shadow2:false) {
+  $params: $shadow1;
+  @if $shadow2
+  { $params: $shadow1, $shadow2; }
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}

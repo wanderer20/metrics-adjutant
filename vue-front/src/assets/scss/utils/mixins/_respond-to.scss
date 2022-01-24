@@ -1,0 +1,27 @@
+// Миксин для адаптива
+@mixin respond-to($media) {
+  @if $media == wide {
+    @media only screen and (max-width: 1600px) { @content }
+  }
+  @else if $media == big-tablet {
+    @media only screen and (max-width: 1400px) { @content }
+  }
+  @else if $media == middle-tablet {
+    @media only screen and (max-width: 1200px) { @content }
+  }
+  @else if $media == tablet {
+    @media only screen and (max-width: 992px) { @content }
+  }
+  @else if $media == small-tablet {
+    @media only screen and (max-width: 768px) { @content }
+  }
+  @else if $media == mobile {
+    @media only screen and (max-width: 576px) { @content }
+  }
+  @else if $media == small-mobile {
+    @media only screen and (max-width: 400px) { @content }
+  }
+  @else {
+    @media only screen and (max-width: $media + px) { @content }
+  }
+}

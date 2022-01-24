@@ -9,7 +9,7 @@ module.exports = {
         main: path.resolve(__dirname, './src/js/index.js')
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './examples'),
         filename: '[name].js'
     },
     mode: "development",
@@ -17,7 +17,7 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         static: {
-            directory: path.resolve(__dirname, './dist')
+            directory: path.resolve(__dirname, './examples')
         },
         open: true,
         compress: true,

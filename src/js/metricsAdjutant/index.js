@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) Oleg Biryukov <>
+ */
 import YandexMetric from "./metrics/yandexMetric";
 import GoogleMetric from "./metrics/googleMetric";
 
@@ -120,3 +123,8 @@ export default function metricsAdjutant() {
         return false
     }
 }
+
+module.exports = metricsAdjutant
+module.exports.default = metricsAdjutant
+module.exports.metricsAdjutant = metricsAdjutant
+module.exports.__esModule = true

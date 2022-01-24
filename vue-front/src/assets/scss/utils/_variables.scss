@@ -1,0 +1,61 @@
+// COLORS
+
+$t-color-black:                               #000000 !default;
+$t-color-white:                               #FFFFFF !default;
+
+$t-color-accent:                              #2BB673 !default;
+$t-color-accent-hover:                   	  darken($t-color-accent, 5%) !default;
+$t-color-accent-dark:                         #008C4E !default;
+$t-color-text:                                #231F20 !default;
+
+$t-color-green:                               #21B521 !default;
+$t-color-orange:                              #FF8500 !default;
+$t-color-blue:                                #454e84 !default;
+$t-color-red:                                 #ff0000 !default;
+
+$t-color-light-bg:						      #FBFBFB !default;
+$t-color-filled: 						      #F6F6F6 !default;
+$t-color-lightgray:                           #CCCCCC !default;
+$t-color-disabled:                            #f5f5f5 !default;
+$t-color-bordered:                            #CCCCCC !default;
+$t-color-gray:                                #999999 !default;
+$t-color-gray-secondary:                      #A3A3A3 !default;
+$t-color-gray-thirdly:                        #B1B1B1 !default;
+$t-color-dark-gray:                           #303030 !default;
+$t-color-dark:                                #231F20 !default;
+
+// FONTS
+
+$t-font-primary:                             "Montserrat", sans-serif !default;
+$t-font-secondary:                           "Montserrat", sans-serif !default;
+$t-font-icon-pack:                           "IconPack" !default;
+
+:root {
+  --t-font-primary: #{$t-font-primary};
+  --t-font-secondary: #{$t-font-secondary};
+  --t-font-icon-pack: #{$t-font-icon-pack};
+
+  --t-color-black: #{$t-color-black};
+  --t-color-white: #{$t-color-white};
+
+  --t-color-accent: #{$t-color-accent};
+  --t-color-accent-hover: #{$t-color-accent-hover};
+  --t-color-accent-dark: #{$t-color-accent-dark};
+  --t-color-text: #{$t-color-text};
+
+  --t-color-green: #{$t-color-green};
+  --t-color-orange: #{$t-color-orange};
+  --t-color-blue: #{$t-color-blue};
+  --t-color-red: #{$t-color-red};
+
+  --t-color-light-bg: #{$t-color-light-bg};
+  --t-color-filled: #{$t-color-filled};
+  --t-color-lightgray: #{$t-color-lightgray};
+  --t-color-disabled: #{$t-color-disabled};
+  --t-color-bordered: #{$t-color-bordered};
+  --t-color-gray: #{$t-color-gray};
+  --t-color-gray-secondary: #{$t-color-gray-secondary};
+  --t-color-gray-thirdly: #{$t-color-gray-thirdly};
+  --t-color-dark-gray: #{$t-color-dark-gray};
+  --t-color-dark: #{$t-color-dark};
+}

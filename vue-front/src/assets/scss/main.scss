@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+//  scss/
+//  |
+//  |- base/
+//  |  |- _reset.scss               # Reset / normalize
+//  |  |- _typography.scss          # Файл с подключением шрифтов
+//  |  |- _base.scss                # Основные стили
+//  |  ...
+//  |
+//  |- components/                  # Стили компонентов
+//  |  |- controls/                 # Стили управляющих элементов
+//  |  |  |- _checkbox.scss         # Чекбокс
+//  |  |  |- _form.scss             # Формы
+//  |  |  |- _input.scss            # Поля ввода
+//  |  |  |- _numberSpinner.scss    # Числовой переключатель
+//  |  |  |- _radioButton.scss      # Радиокнопка
+//  |  |  |- _rangeSlider.scss      # Диапазон значений
+//  |  |  |- _select.scss           # Выпадающий список
+//  |  |  ...
+//  |  |
+//  |  |- elements/                 # Стили элементов
+//  |  |  |- search-bar.scss
+//  |  |  |- subscribe-bar.scss
+//  |  |  ...
+//  |  |
+//  |  |- main/                     # Стили основных элементов
+//  |  |  |- _buttons.scss          # Стили кнопок
+//  |  |  |- _expander.scss         # Стили для разворачивающейся области
+//  |  |  |- _icons.scss            # Иконки
+//  |  |  |- _links.scss            # Стили ссылок
+//  |  |  |- _list.scss             # Стили списков (нумерованный, ненумерованный)
+//  |  |  |- _table.scss            # Стили таблиц
+//  |  |  |- _tabs.scss             # Стили вкладок
+//  |  |  ...
+//  |
+//  |- layout/                      # Папка для стилей слоев (каркаса)
+//  |  |- _content-area.scss        # Область контента
+//  |  |- _header.scss              # Стили для шапки
+//  |  |- _grid.scss                # Сетка
+//  |  |- _footer.scss              # Стили для подвала
+//  |  |- _main.scss                # Основной слой
+//  |  ...
+//  |
+//  |- themes/                      # Папка со стилями тем
+//  |  |- _theme.scss               # Тема по-умолчанияю
+//  |  |- _admin.scss               # Тема для админки
+//  |  ...
+//  |
+//  |- pages/                       # Папка для страниц
+//  |  |- _home.scss                # Специфичные стили для home
+//  |  |- _contacts.scss            # Специфичный стили для contacts
+//  |  ...
+//  |
+//  |- utils/                       # Инструменты
+//  |  |- mixins/                   # Папка с миксинами
+//  |  |  ...
+//  |  |
+//  |  |- _functions.scss           # Sass functions
+//  |  |- _mixins.scss              # Sass mixins
+//  |  |- _variables.scss           # Sass variables
+//  |
+//  |- vendors/                     # Папка для сторонних стилей
+//  |  |- _bootstrap.scss           # Bootstrap
+//  |  |- _jquery-ui.scss           # jQuery UI
+//  |  ...
+//  |
+//  |- main.scss                    # Точка входа для стилей
+
+// Порядок подключения стилей:
+
+//  1. utils/...
+//  2. vendors/...
+//  3. base/...
+//  4. layout/...
+//  5. components/controls/...
+//  6. components/main/...
+//  7. components/elements/...
+//  8. pages/...
+//  9. themes/...
+
+
+//  1. utils/...
+@import "utils/variables";
+@import "utils/mixins";
+
+//  2. vendors/...
+//  3. base/...
+@import "base/reset";
+@import "base/typography";
+@import "base/base";
+
+//  4. layout/...
+
+//  5. components/controls/...
+//  6. components/main/...
+//  7. components/elements/...
+//  9. themes/...
