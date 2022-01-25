@@ -98,7 +98,7 @@
             const currentMetricSettings         = ref([
                 {
                     'label'     : 'id',
-                    'title'     : 'ID метрики',
+                    'title'     : 'ID ресурса',
                     'type'      : 'string',
                     'default'   : '',
                     'value'     : '',
