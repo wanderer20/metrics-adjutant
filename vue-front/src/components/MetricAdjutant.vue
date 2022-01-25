@@ -56,13 +56,18 @@
                                     <template v-if="option.type === 'string'">
                                         <el-checkbox v-model="option.active" type="checkbox" :label="option.title" :name="option.active"></el-checkbox>
 
-                                        <div v-if="option.active" class="metric-adjutant__label">
-                                            {{ option.label }}
+                                        <div class="metric-adjutant__field">
+                                            <div v-if="option.active" class="metric-adjutant__label">
+                                                {{ option.label }}
+                                            </div>
+                                            <div class="metric-adjutant__value">
+                                                <el-input v-if="option.active"
+                                                          v-model="option.value"
+                                                          type="text"
+                                                          :name="option.label" disabled />
+                                            </div>
                                         </div>
-                                        <el-input v-if="option.active"
-                                                  v-model="option.value"
-                                                  type="text"
-                                                  :name="option.label" />
+
                                     </template>
                                     <template v-if="option.type === 'boolean'">
                                         <el-checkbox v-model="option.active" type="checkbox" :label="option.title" :name="option.active" />
