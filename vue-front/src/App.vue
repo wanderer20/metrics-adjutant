@@ -9,8 +9,4 @@
 
 <style lang="scss">
   @import "assets/scss/main";
-
-  body {
-    color: $t-color-red;
-  }
 </style>
