@@ -54,8 +54,8 @@
                     <p>
                         Файл <strong>eventmanager.js</strong>
                     </p>
-                    <code><pre>
-                        /**
+                    <pre v-highlightjs="sourcecode">
+                        <code class="javascript">/**
                         * Класс для менеджера событий (целей)
                         * @constructor
                         */
@@ -87,7 +87,8 @@
                         }
 
                         window.eventManager = new EventManager();
-                    </pre></code>
+                        </code>
+                    </pre>
                 </div>
             </div>
         </div>
@@ -96,11 +97,13 @@
 
 <script>
     import MetricAdjutant from "../components/MetricAdjutant.vue";
+    import { component as CodeHighlight } from 'vue-code-highlight';
 
     export default {
         name: "Index",
         components: {
-            MetricAdjutant
+            MetricAdjutant,
+            CodeHighlight
         }
 
     }
