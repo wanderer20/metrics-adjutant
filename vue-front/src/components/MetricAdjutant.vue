@@ -6,7 +6,7 @@
                     <div class="metric-adjutant__title h3">
                         Код для вставки в метод <strong>createMetric</strong>
                     </div>
-                    <pre>{{ getResultMetricSetting(getMetricConfig(currentMetricConfig)) }}</pre>
+                    <pre class="language-javascript"><code>{{ getResultMetricSetting(getMetricConfig(currentMetricConfig)) }}</code></pre>
                 </div>
                 <div class="metric-adjutant__settings">
                     <div class="metric-adjutant__title h3">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div class="metric-adjutant__add">
+                        <div class="metric-adjutant__add" style="display: none">
                             <el-button size="large" type="primary" :disabled="!isCurrentMetricValidate()">Добавить</el-button>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-    import {ref} from "vue"
+    import { onMounted, ref } from "vue"
 
     export default {
         name: "MetricAdjutant",
@@ -287,6 +287,10 @@
                 }, false)
             }
 
+            onMounted(() => {
+                setCurrentMetric(metrics[0]['type'])
+            })
+
             return {
                 metrics,
                 currentMetricConfig,
@@ -326,18 +330,11 @@
             flex-direction: column;
             flex: 1;
 
-            pre {
-                flex: 1;
-                font-family: monospace;
-                padding: 30px 30px;
-                background-color: $t-color-filled;
-                border-radius: 10px;
-                overflow: hidden;
-            }
+
 
 
             + #{$p}__settings {
-                margin-left: 30px;
+                margin-left: 60px;
             }
         }
         &__settings {

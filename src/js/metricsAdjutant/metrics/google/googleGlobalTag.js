@@ -167,7 +167,7 @@ export default class GoogleGlobalTag extends BaseMetric {
      *
      * @return {boolean}
      *
-     * @see https://developers.google.com/analytics/devguides/collection/gtagjs/events#send_events
+     * @see https://developers.google.com/tag-platform/gtagjs/reference?hl=ru#set
      */
     set(params) {
         const parameters = params || {}
