@@ -8,7 +8,11 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
     css: {
         preprocessorOptions: {
+            css: {
+                charset: false
+            },
             scss: {
+                charset: false,
                 additionalData: `@import "./src/assets/scss/utils/_variables.scss"; @import "./src/assets/scss/utils/_mixins.scss";`
             }
         }
@@ -21,5 +25,14 @@ export default defineConfig({
         Components({
             resolvers: [ElementPlusResolver()],
         }),
-    ]
+    ],
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/[name].js`,
+                chunkFileNames: `assets/[name].js`,
+                assetFileNames: `assets/[name].[ext]`
+            }
+        }
+    }
 })
