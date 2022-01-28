@@ -4,9 +4,11 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+console.log(process.env.NODE_ENV)
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    publicDir:  process.env.NODE_ENV === 'production' ?
+    base:  process.env.NODE_ENV === 'production' ?
         '/metrics-adjutant/' :
         '/',
     css: {
